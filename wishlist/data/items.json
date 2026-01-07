@@ -3,5 +3,12 @@
   {"id":"g2","title":"Dárkový poukaz do knihkupectví","description":"Poukaz na 500 Kč.","price":"500 Kč","category":"Zážitky"},
   {"id":"g3","title":"Termohrnek","description":"Nerezový termohrnek 500 ml.","price":"300 Kč","category":"Praktické"},
   {"id":"g4","title":"Stolní hra","description":"Rodinná stolní hra pro 2-6 hráčů.","price":"800 Kč","category":"Zábava"},
-  {"id":"g5","title":"Poukaz na masáž","description":"Relaxační masáž 60 min.","price":"600 Kč","category":"Wellness"}
+  {"id":"g5","title":"Poukaz na masáž","description":"Relaxační masáž 60 min.","price":"600 Kč","category":"Wellness"},
+  {"id":"g6","title":"Dárkový koš s dobrotami","description":"Výběr lokálních delikates a čokolád.","price":"700 Kč","category":"Gourmet"},
+  {"id":"g7","title":"Svíčky s vůní vanilky","description":"Sada 3 ručně dělaných svíček.","price":"350 Kč","category":"Domov"},
+  {"id":"g8","title":"Poukaz na kurz vaření","description":"Kurz vaření pro začátečníky (2 hod).","price":"900 Kč","category":"Zážitky"},
+  {"id":"g9","title":"Kožený zápisník","description":"Elegantní A5 zápisník, 120 listů.","price":"420 Kč","category":"Praktické"},
+  {"id":"g10","title":"Mini fotoaparátek Instax","description":"Okamžité fotografie pro zábavné vzpomínky.","price":"1600 Kč","category":"Zábava"},
+  {"id":"g11","title":"Přenosný reproduktor","description":"Voděodolný Bluetooth reproduktor.","price":"800 Kč","category":"Elektronika"},
+  {"id":"g12","title":"Vstupenky do kina","description":"Dvě vstupenky na film dle výběru.","price":"300 Kč","category":"Zábava"}
 ]
