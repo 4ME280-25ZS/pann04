@@ -1,0 +1,25 @@
+:root{
+  --bg:#f6f7fb;
+  --card:#fff;
+  --accent:#2b6cb0;
+  --muted:#6b7280;
+}
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:var(--bg); margin:0; color:#111}
+.container{max-width:900px;margin:32px auto;padding:20px}
+header h1{margin:0 0 6px 0}
+.items-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:20px}
+.card{background:var(--card);border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,0.06);padding:16px}
+.card h3{margin:0 0 6px 0;font-size:1.05rem}
+.meta{color:var(--muted);font-size:0.9rem;margin-bottom:8px}
+.desc{margin:8px 0;font-size:0.95rem}
+.actions{display:flex;gap:8px;margin-top:10px}
+.btn{padding:8px 12px;border-radius:8px;border:0;cursor:pointer;background:var(--accent);color:#fff}
+.btn.secondary{background:#e6eef9;color:var(--accent);border:1px solid rgba(43,108,176,0.08)}
+.reserved{font-weight:600;color:var(--accent)}
+footer{margin-top:24px;color:var(--muted)}
+
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0b1020;--card:#071428;--accent:#63b3ed;--muted:#9aa6bb}
+  body{color:#e6eef9}
+}

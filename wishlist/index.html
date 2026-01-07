@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Wishlist — Rezervace dárků</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>Wishlist</h1>
+        <p>Zde vidíš seznam očekávaných darů. Když si chceš některý rezervovat, klikni na "Rezervovat" nebo pošli žádost přes GitHub issue.</p>
+      </header>
+
+      <section id="items" class="items-grid" aria-live="polite"></section>
+
+      <footer>
+        <small>Data jsou načtena z <code>data/items.json</code>. Rezervace v tomto prototypu ukládá jméno do prohlížeče (localStorage).</small>
+      </footer>
+    </main>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>

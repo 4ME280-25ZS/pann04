@@ -1,0 +1,7 @@
+[
+  {"id":"g1","title":"Bezdrátová sluchátka","description":"Kvalitní sluchátka s potlačením šumu.","price":"1500 Kč","category":"Elektronika"},
+  {"id":"g2","title":"Dárkový poukaz do knihkupectví","description":"Poukaz na 500 Kč.","price":"500 Kč","category":"Zážitky"},
+  {"id":"g3","title":"Termohrnek","description":"Nerezový termohrnek 500 ml.","price":"300 Kč","category":"Praktické"},
+  {"id":"g4","title":"Stolní hra","description":"Rodinná stolní hra pro 2-6 hráčů.","price":"800 Kč","category":"Zábava"},
+  {"id":"g5","title":"Poukaz na masáž","description":"Relaxační masáž 60 min.","price":"600 Kč","category":"Wellness"}
+]
