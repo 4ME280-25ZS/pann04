@@ -119,6 +119,28 @@ async function init(){
     const cfg = await loadSupabaseConfig();
     if(cfg){ supabaseInit(cfg); }
     await render(items);
+    // attach clear-all handler
+    const clearBtn = document.getElementById('clear-all');
+    if(clearBtn){
+      clearBtn.addEventListener('click', async ()=>{
+        if(!confirm('Opravdu vymazat všechny rezervace? Tuto akci nelze vrátit.')) return;
+        try{
+          // clear remote first if available
+          if(supabase){
+            const { error } = await supabase.from('reservations').delete().neq('id', 0);
+            if(error) throw error;
+          }
+          // clear local
+          localStorage.removeItem('wishlist_resv');
+          // re-render
+          const fresh = await loadItems();
+          await render(fresh);
+          alert('Všechny rezervace byly vymazány.');
+        }catch(e){
+          alert('Chyba při mazání: ' + (e.message||e));
+        }
+      });
+    }
   }catch(err){
     console.error(err);
     document.getElementById('items').textContent = 'Chyba při načítání položek.';
