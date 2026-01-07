@@ -75,40 +75,34 @@ async function render(items){
     // choose source: remote if available, else local
     const names = remote ? (remote[item.id]||[]) : (local[item.id]||[]);
     if(names.length){
-      // reserved — show single reserver and disable further input
-      const who = el('div',{class:'reserved',text:`Rezervováno: ${names[0]}`});
+      // reserved — show single reserver and no further input
+      const who = el('div',{class:'reserved',text:`Kupuje: ${names[0]}`});
       card.appendChild(who);
-    }
-
-    const actions = el('div',{class:'actions'});
-    const nameInput = el('input',{type:'text',placeholder:'Tvé jméno',class:'name-input'});
-    const doReserve = el('button',{class:'btn',type:'button',text:'Připsat jméno'});
-    doReserve.addEventListener('click', async ()=>{
-      const name = nameInput.value.trim();
-      if(!name) return alert('Zadejte prosím jméno.');
-      // check reserved
-      const currentlyReserved = remote ? (remote[item.id] && remote[item.id].length>0) : (local[item.id] && local[item.id].length>0);
-      if(currentlyReserved) return alert('Tento dárek už je rezervovaný.');
-      try{
-        if(supabase){
-          await supabaseAddReservation(item.id, name);
-        } else {
-          addLocalReservation(item.id, name);
+    } else {
+      const actions = el('div',{class:'actions'});
+      const nameInput = el('input',{type:'text',placeholder:'Tvé jméno',class:'name-input'});
+      const doReserve = el('button',{class:'btn',type:'button',text:'Rezervovat'});
+      doReserve.addEventListener('click', async ()=>{
+        const name = nameInput.value.trim();
+        if(!name) return alert('Zadejte prosím jméno.');
+        // check reserved
+        const currentlyReserved = remote ? (remote[item.id] && remote[item.id].length>0) : (local[item.id] && local[item.id].length>0);
+        if(currentlyReserved) return alert('Tento dárek už je rezervovaný.');
+        try{
+          if(supabase){
+            await supabaseAddReservation(item.id, name);
+          } else {
+            addLocalReservation(item.id, name);
+          }
+          await render(items);
+        }catch(e){
+          alert('Chyba při ukládání: '+(e.message||e));
         }
-        await render(items);
-      }catch(e){
-        alert('Chyba při ukládání: '+(e.message||e));
-      }
-    });
-    // disable input if already reserved
-    if(names.length){
-      nameInput.setAttribute('disabled','');
-      doReserve.setAttribute('disabled','');
+      });
+      actions.appendChild(nameInput);
+      actions.appendChild(doReserve);
+      card.appendChild(actions);
     }
-    actions.appendChild(nameInput);
-    actions.appendChild(doReserve);
-
-    card.appendChild(actions);
     container.appendChild(card);
   });
 }
@@ -119,28 +113,7 @@ async function init(){
     const cfg = await loadSupabaseConfig();
     if(cfg){ supabaseInit(cfg); }
     await render(items);
-    // attach clear-all handler
-    const clearBtn = document.getElementById('clear-all');
-    if(clearBtn){
-      clearBtn.addEventListener('click', async ()=>{
-        if(!confirm('Opravdu vymazat všechny rezervace? Tuto akci nelze vrátit.')) return;
-        try{
-          // clear remote first if available
-          if(supabase){
-            const { error } = await supabase.from('reservations').delete().neq('id', 0);
-            if(error) throw error;
-          }
-          // clear local
-          localStorage.removeItem('wishlist_resv');
-          // re-render
-          const fresh = await loadItems();
-          await render(fresh);
-          alert('Všechny rezervace byly vymazány.');
-        }catch(e){
-          alert('Chyba při mazání: ' + (e.message||e));
-        }
-      });
-    }
+    // no clear-all control in this edition — reservations are permanent
   }catch(err){
     console.error(err);
     document.getElementById('items').textContent = 'Chyba při načítání položek.';
