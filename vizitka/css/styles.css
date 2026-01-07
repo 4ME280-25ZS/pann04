@@ -77,21 +77,21 @@ body{background:linear-gradient(180deg,var(--bg) 0%,#ffffff 100%);display:flex;a
 	.card-grid{grid-template-columns:1fr}
 }
 
-/* Landing page styles */
-.landing{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px}
-.landing-card{width:100%;max-width:720px;background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(248,252,255,0.9));border-radius:14px;box-shadow:0 20px 60px rgba(16,24,40,0.12);padding:28px;display:flex;flex-direction:column;gap:16px}
-.landing-brand{display:flex;align-items:center;gap:14px}
-.logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;box-shadow:0 6px 18px rgba(43,154,243,0.14)}
-.brand-text h1{margin:0;font-size:20px;color:var(--text)}
-.muted{color:var(--muted);font-size:13px;margin:0}
-.lead{margin:4px 0 0 0;color:var(--text);font-size:15px}
-.landing-actions{display:flex;gap:12px;margin-top:14px}
-.landing-actions .btn{padding:10px 16px;border-radius:10px}
-.landing-actions .btn.outline{background:transparent;border:1px solid rgba(16,24,40,0.06);color:var(--text)}
-.foot{margin-top:8px;font-size:13px}
+/* Minimal & Elegant landing styles */
+.landing{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;background:linear-gradient(180deg,#fbfcfe,#f6f8fb)}
+.landing-card{width:100%;max-width:680px;background:#ffffff;border-radius:12px;box-shadow:0 8px 30px rgba(16,24,40,0.08);padding:36px;display:flex;flex-direction:column;gap:18px;border:1px solid rgba(16,24,40,0.03)}
+.landing-brand{display:flex;align-items:center;gap:16px}
+.logo{width:56px;height:56px;border-radius:10px;background:#111827;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px}
+.brand-text h1{margin:0;font-size:20px;color:#0f172a;font-weight:700}
+.muted{color:#6b7280;font-size:13px;margin:0}
+.lead{margin:6px 0 0 0;color:#334155;font-size:15px}
+.landing-actions{display:flex;gap:12px;margin-top:18px}
+.landing-actions .btn{padding:10px 16px;border-radius:10px;background:#0f172a;color:#fff;border:none;box-shadow:none}
+.landing-actions .btn.outline{background:transparent;border:1px solid rgba(16,24,40,0.08);color:#0f172a}
+.foot{margin-top:8px;font-size:13px;color:#6b7280}
 
 @media (max-width:600px){
-	.landing-card{padding:18px}
+	.landing-card{padding:20px}
 	.landing-actions{flex-direction:column}
-	.logo{width:56px;height:56px;font-size:18px}
+	.logo{width:48px;height:48px;font-size:16px}
 }
