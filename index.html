@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Vizitka Jana Nováka — UI/UX designer a frontend developer. Kontaktujte mě přes e-mail nebo stáhněte vCard.">
+  <title>Jan Novák — Vizitka</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo="> 
+</head>
+<body>
+  <main class="card" role="region" aria-label="Vizitka Jana Nováka">
+    <div class="card-grid">
+      <aside class="panel" aria-labelledby="profile-name">
+        <div class="avatar" aria-hidden="false">
+          <!-- simple SVG avatar -->
+          <svg width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Avatar">
+            <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#0b74de"/><stop offset="1" stop-color="#6c9bd8"/></linearGradient></defs>
+            <rect width="96" height="96" rx="12" fill="#eef6ff" />
+            <g transform="translate(16,14)">
+              <circle cx="32" cy="20" r="16" fill="url(#g)" />
+              <rect x="0" y="46" width="64" height="12" rx="6" fill="#dbe9fb" />
+            </g>
+          </svg>
+        </div>
+        <h1 id="profile-name" class="name">Jan Novák</h1>
+        <p class="title">UI/UX designer & frontend developer</p>
+
+        <div class="actions">
+          <a class="btn" href="mailto:jan.novak@example.com" aria-label="Napsat email">Napsat e‑mail</a>
+          <button id="download-vcard" class="btn outline" aria-label="Stáhnout vCard">Stáhnout vCard</button>
+        </div>
+
+        <section class="contact" aria-label="Kontakt">
+          <h2>Kontakt</h2>
+          <ul>
+            <li>Telefon: <button class="copy" data-copy="+420 604 123 456">+420 604 123 456</button></li>
+            <li>Email: <button class="copy" data-copy="jan.novak@example.com">jan.novak@example.com</button></li>
+            <li>Adresa: Dlouhá 12, 110 00 Praha 1, Česká republika</li>
+            <li>Firma: Novák Creative</li>
+          </ul>
+        </section>
+      </aside>
+
+      <section class="content">
+        <section class="about">
+          <h2>O mně</h2>
+          <p>Jsem nadšený designér a vývojář se zaměřením na jednoduché, přístupné a použitelné rozhraní. Mám 6 let praxe v navrhování produktů pro web i mobilní zařízení a rád pracuji napříč týmy.</p>
+        </section>
+
+        <section class="skills">
+          <h2>Dovednosti</h2>
+          <p>HTML · CSS · JavaScript · React · Figma · Přístupnost (a11y)</p>
+        </section>
+
+        <section class="social">
+          <h2>Sociální sítě</h2>
+          <p><a href="#" aria-label="LinkedIn">LinkedIn</a> · <a href="#" aria-label="GitHub">GitHub</a> · <a href="#" aria-label="Dribbble">Dribbble</a></p>
+        </section>
+
+        <footer class="card-footer">
+          <small>Vizitka vytvořena automaticky — obsah je fiktivní.</small>
+        </footer>
+      </section>
+    </div>
+    <script id="profile-data" type="application/json">{
+      "fn":"Jan Novák",
+      "org":"Novák Creative",
+      "title":"UI/UX designer & frontend developer",
+      "tel":"+420 604 123 456",
+      "email":"jan.novak@example.com",
+      "adr":"Dlouhá 12;110 00;Praha 1;Česká republika"
+    }</script>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
