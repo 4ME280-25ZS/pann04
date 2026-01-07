@@ -87,41 +87,43 @@ async function render(items){
     const actions = el('div',{class:'actions'});
     const isLoc = local[item.id];
     const isRem = remote[item.id];
-    const reserveBtn = el('button',{class:'btn',type:'button',text: isLoc || isRem ? 'Zrušit rezervaci' : 'Rezervovat'});
 
-    reserveBtn.addEventListener('click', async ()=>{
-      if(isRem && supabase){
-        if(!confirm('Opravdu zrušit rezervaci (remote)?')) return;
-        try{ await supabaseCancel(item.id, remote[item.id]); alert('Zrušeno (remote)'); }
-        catch(e){ alert('Chyba: '+e.message); }
-      } else if(isLoc){
-        if(!confirm('Opravdu zrušit lokální rezervaci?')) return;
-        setLocalReservation(item.id,null);
-      } else {
-        const name = prompt('Zadejte své jméno pro rezervaci:');
-        if(!name) return;
-        if(supabase){
-          try{ await supabaseReserve(item.id,name); alert('Rezervováno (remote)'); }
-          catch(e){ alert('Chyba: '+(e.message||e)); return; }
-        } else {
-          setLocalReservation(item.id,name);
-        }
-      }
-      render(items);
-    });
-
-    const issueBtn = el('button',{class:'btn secondary',type:'button',text:'Požádat přes GitHub'});
-    issueBtn.addEventListener('click', ()=> openIssueFor(item));
-
-    actions.appendChild(reserveBtn);
-    actions.appendChild(issueBtn);
-
+    // Inline reservation input (no registration)
     if(isRem){
       const who = el('div',{class:'reserved',text:`Rezervováno: ${remote[item.id]} (remote)`});
+      const cancelBtn = el('button',{class:'btn secondary',type:'button',text:'Zrušit (remote)'});
+      cancelBtn.addEventListener('click', async ()=>{
+        if(!confirm('Opravdu zrušit rezervaci (remote)?')) return;
+        try{ await supabaseCancel(item.id, remote[item.id]); alert('Zrušeno (remote)'); render(items); }
+        catch(e){ alert('Chyba: '+e.message); }
+      });
       card.appendChild(who);
+      actions.appendChild(cancelBtn);
     } else if(isLoc){
       const who = el('div',{class:'reserved',text:`Rezervováno (lokálně): ${local[item.id]}`});
+      const cancelBtn = el('button',{class:'btn secondary',type:'button',text:'Zrušit (lokálně)'});
+      cancelBtn.addEventListener('click', ()=>{ if(!confirm('Opravdu zrušit lokální rezervaci?')) return; setLocalReservation(item.id,null); render(items); });
       card.appendChild(who);
+      actions.appendChild(cancelBtn);
+    } else {
+      const nameInput = el('input',{type:'text',placeholder:'Tvé jméno',class:'name-input'});
+      const doReserve = el('button',{class:'btn',type:'button',text:'Rezervovat'});
+      doReserve.addEventListener('click', async ()=>{
+        const name = nameInput.value.trim();
+        if(!name) return alert('Zadejte prosím jméno.');
+        if(supabase){
+          try{ await supabaseReserve(item.id,name); alert('Rezervováno (remote)'); render(items); }
+          catch(e){ alert('Chyba: '+(e.message||e)); }
+        } else {
+          setLocalReservation(item.id,name);
+          render(items);
+        }
+      });
+      actions.appendChild(nameInput);
+      actions.appendChild(doReserve);
+      const issueBtn = el('button',{class:'btn secondary',type:'button',text:'Požádat přes GitHub'});
+      issueBtn.addEventListener('click', ()=> openIssueFor(item));
+      actions.appendChild(issueBtn);
     }
 
     card.appendChild(actions);

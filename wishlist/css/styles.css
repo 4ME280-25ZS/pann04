@@ -14,6 +14,7 @@ header h1{margin:0 0 6px 0}
 .meta{color:var(--muted);font-size:0.9rem;margin-bottom:8px}
 .desc{margin:8px 0;font-size:0.95rem}
 .actions{display:flex;gap:8px;margin-top:10px}
+.name-input{flex:1;padding:8px;border-radius:8px;border:1px solid #ddd}
 .btn{padding:8px 12px;border-radius:8px;border:0;cursor:pointer;background:var(--accent);color:#fff}
 .btn.secondary{background:#e6eef9;color:var(--accent);border:1px solid rgba(43,108,176,0.08)}
 .reserved{font-weight:600;color:var(--accent)}
