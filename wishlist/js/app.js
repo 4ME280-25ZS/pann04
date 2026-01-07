@@ -1,3 +1,5 @@
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
 const ITEMS_JSON = './data/items.json';
 
 function el(tag, attrs = {}, children = []){
@@ -25,10 +27,44 @@ function addLocalReservation(itemId, name){
   localStorage.setItem('wishlist_resv', JSON.stringify(s));
 }
 
-function render(items){
+async function loadSupabaseConfig(){
+  try{
+    const r = await fetch('./data/supabase-config.json');
+    const cfg = await r.json();
+    if(cfg.url && cfg.anonKey) return cfg;
+  }catch(e){}
+  return null;
+}
+
+let supabase = null;
+function supabaseInit(cfg){
+  supabase = createClient(cfg.url, cfg.anonKey);
+}
+
+async function supabaseGetReservations(){
+  if(!supabase) return {};
+  const { data, error } = await supabase.from('reservations').select('item_id,name').order('created_at', {ascending:true});
+  if(error){ console.warn('Supabase read error', error); return {}; }
+  const map = {};
+  data.forEach(r => {
+    if(!map[r.item_id]) map[r.item_id]=[];
+    map[r.item_id].push(r.name);
+  });
+  return map;
+}
+
+async function supabaseAddReservation(itemId, name){
+  if(!supabase) throw new Error('Supabase not initialized');
+  const { error } = await supabase.from('reservations').insert({item_id:itemId, name});
+  if(error) throw error;
+}
+
+async function render(items){
   const container = document.getElementById('items');
   container.innerHTML='';
   const local = getLocalReservations();
+  const remote = supabase ? await supabaseGetReservations() : null;
+
   items.forEach(item => {
     const card = el('article',{class:'card'});
     const h = el('h3',{text:item.title});
@@ -36,8 +72,8 @@ function render(items){
     const desc = el('p',{class:'desc',text:item.description || ''});
     card.appendChild(h); card.appendChild(meta); card.appendChild(desc);
 
-    // show list of names (may be multiple)
-    const names = local[item.id] || [];
+    // choose source: remote if available, else local
+    const names = remote ? (remote[item.id]||[]) : (local[item.id]||[]);
     if(names.length){
       const list = el('ul',{});
       names.forEach(n => list.appendChild(el('li',{text:n})));
@@ -47,11 +83,19 @@ function render(items){
     const actions = el('div',{class:'actions'});
     const nameInput = el('input',{type:'text',placeholder:'Tvé jméno',class:'name-input'});
     const doReserve = el('button',{class:'btn',type:'button',text:'Připsat jméno'});
-    doReserve.addEventListener('click', ()=>{
+    doReserve.addEventListener('click', async ()=>{
       const name = nameInput.value.trim();
       if(!name) return alert('Zadejte prosím jméno.');
-      addLocalReservation(item.id, name);
-      render(items);
+      try{
+        if(supabase){
+          await supabaseAddReservation(item.id, name);
+        } else {
+          addLocalReservation(item.id, name);
+        }
+        await render(items);
+      }catch(e){
+        alert('Chyba při ukládání: '+(e.message||e));
+      }
     });
     actions.appendChild(nameInput);
     actions.appendChild(doReserve);
@@ -64,7 +108,9 @@ function render(items){
 async function init(){
   try{
     const items = await loadItems();
-    render(items);
+    const cfg = await loadSupabaseConfig();
+    if(cfg){ supabaseInit(cfg); }
+    await render(items);
   }catch(err){
     console.error(err);
     document.getElementById('items').textContent = 'Chyba při načítání položek.';
