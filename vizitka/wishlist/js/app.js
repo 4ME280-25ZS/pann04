@@ -75,9 +75,9 @@ async function render(items){
     // choose source: remote if available, else local
     const names = remote ? (remote[item.id]||[]) : (local[item.id]||[]);
     if(names.length){
-      const list = el('ul',{});
-      names.forEach(n => list.appendChild(el('li',{text:n})));
-      card.appendChild(list);
+      // reserved — show single reserver and disable further input
+      const who = el('div',{class:'reserved',text:`Rezervováno: ${names[0]}`});
+      card.appendChild(who);
     }
 
     const actions = el('div',{class:'actions'});
@@ -86,6 +86,9 @@ async function render(items){
     doReserve.addEventListener('click', async ()=>{
       const name = nameInput.value.trim();
       if(!name) return alert('Zadejte prosím jméno.');
+      // check reserved
+      const currentlyReserved = remote ? (remote[item.id] && remote[item.id].length>0) : (local[item.id] && local[item.id].length>0);
+      if(currentlyReserved) return alert('Tento dárek už je rezervovaný.');
       try{
         if(supabase){
           await supabaseAddReservation(item.id, name);
@@ -97,6 +100,11 @@ async function render(items){
         alert('Chyba při ukládání: '+(e.message||e));
       }
     });
+    // disable input if already reserved
+    if(names.length){
+      nameInput.setAttribute('disabled','');
+      doReserve.setAttribute('disabled','');
+    }
     actions.appendChild(nameInput);
     actions.appendChild(doReserve);
 
