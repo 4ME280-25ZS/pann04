@@ -1,6 +1,6 @@
 # Wishlist app
 
-MVP statická aplikace pro zobrazení očekávaných dárků a jednoduché rezervace.
+MVP statická aplikace pro zobrazení očekávaných dárků a jednoduché připsání jména u položky.
 
 - `index.html` — hlavní stránka.
 - `css/styles.css` — styly.
@@ -8,34 +8,13 @@ MVP statická aplikace pro zobrazení očekávaných dárků a jednoduché rezer
 - `data/items.json` — seznam položek.
 
 Jak to funguje:
-
-Jak to funguje:
 - Aplikace načte `data/items.json` a zobrazí položky.
-- Lokální rezervace ukládá jméno do `localStorage` (viditelná jen v tom prohlížeči).
-- Pro skutečnou rezervaci může uživatel kliknout na "Požádat přes GitHub", což otevře předvyplněné issue v repozitáři, které můžete zpracovat ručně.
+- U každé položky je políčko pro zadání jména. Po uložení se jméno přidá k té položce a uloží do `localStorage`.
+- Tento prototyp je jednoduchý: data jsou sdílena pouze v tom samém prohlížeči (localStorage). Pokud chcete, aby zápisy byly viditelné okamžitě všem účastníkům, je potřeba nasadit sdílené úložiště (např. Supabase nebo Firebase).
 
-Další kroky:
+Volby pro rozšíření (není nutné):
+- Nasadit sdílené úložiště (Supabase/Firebase) — po základní konfiguraci budou zápisy sdílené mezi všemi uživateli.
+- Přidat jednoduchý admin formulář pro přidávání/mazání položek nebo upravovat `data/items.json` v repozitáři.
 
-Další kroky:
-- Přidat serverless backend (Firebase/Supabase) pro sdílené rezervace.
-- Nebo přijímat rezervace automaticky přes GitHub API (vyžaduje token a backend nebo client OAuth).
-
-Supabase integrace (volitelně):
-1. Vytvořte projekt na https://app.supabase.com.
-2. V SQL Editoru spusťte tento příkaz pro vytvoření tabulky:
-
-```sql
-create table reservations (
-	id bigserial primary key,
-	item_id text not null unique,
-	name text not null,
-	created_at timestamptz default now()
-);
-```
-
-3. V Settings → API získejte projekt `url` a `anon key` a vložte je do `wishlist/data/supabase-config.json` místo placeholderů.
-4. Pro demo můžete dočasně povolit veřejné SELECT/INSERT/DELETE, ale pro produkci nastavte RLS a bezpečnostní pravidla.
-
-Po vložení konfigurace se klient automaticky připojí k Supabase a rezervace budou sdílené mezi uživateli.
-
-Poznámka: klientská implementace používá `anon key` ve veřejném klientu. Pokud chcete bezpečnější řešení, doporučuji nasadit malý server nebo serverless funkci, která bude provádět transakce a skrýt privátní klíče.
+Poznámka:
+- Tento projekt je navržen jako co nejjednodušší řešení — lidé si pouze přepíšou své jméno u daného dárku bez nutnosti registrace. Pokud budeš chtít, nasadím sdílené úložiště později.
