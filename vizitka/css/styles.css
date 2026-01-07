@@ -81,7 +81,7 @@ body{background:linear-gradient(180deg,var(--bg) 0%,#ffffff 100%);display:flex;a
 .landing{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;background:linear-gradient(180deg,#fbfcfe,#f6f8fb)}
 .landing-card{width:100%;max-width:680px;background:#ffffff;border-radius:12px;box-shadow:0 8px 30px rgba(16,24,40,0.08);padding:36px;display:flex;flex-direction:column;gap:18px;border:1px solid rgba(16,24,40,0.03)}
 .landing-brand{display:flex;align-items:center;gap:16px}
-.logo{width:56px;height:56px;border-radius:10px;background:#111827;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px}
+.logo{display:none}
 .brand-text h1{margin:0;font-size:20px;color:#0f172a;font-weight:700}
 .muted{color:#6b7280;font-size:13px;margin:0}
 .lead{margin:6px 0 0 0;color:#334155;font-size:15px}
