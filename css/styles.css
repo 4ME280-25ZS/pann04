@@ -42,7 +42,7 @@ body{background:linear-gradient(180deg,var(--bg) 0%,#ffffff 100%);display:flex;a
 
 .content{padding:6px 6px;display:flex;flex-direction:column;justify-content:flex-start}
 
-.social-links{display:flex;gap:12px;margin-top:6px}
+.social-links{display:flex;gap:12px;margin-top:6px;justify-content:center}
 .social-item{padding:8px 12px;border-radius:8px;background:var(--glass);text-decoration:none;color:var(--accent);font-weight:700;border:1px solid rgba(43,154,243,0.06)}
 /* removed QR placeholder styles */
 
