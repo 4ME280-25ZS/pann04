@@ -3,83 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Vizitka Jana Nováka — UI/UX designer a frontend developer. Stručné kontaktní údaje.">
-  <title>Jan Novák — Vizitka</title>
+  <title>Rozcestník — Vizitka & Wishlist</title>
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="icon" href="data:;base64,iVBORw0KGgo="> 
 </head>
 <body>
-  <main class="card" role="region" aria-label="Vizitka Jana Nováka">
-    <div class="card-grid">
-      <aside class="panel" aria-labelledby="profile-name">
-        <div>
-          <div class="avatar-wrap">
-            <div class="avatar"> 
-              <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Avatar">
-                <defs>
-                  <linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#2b9af3"/><stop offset="1" stop-color="#7db6f7"/></linearGradient>
-                </defs>
-                <rect width="120" height="120" rx="18" fill="url(#g2)" opacity="0.12" />
-                <g transform="translate(18,18)">
-                  <circle cx="42" cy="30" r="24" fill="#ffffff" opacity="0.95" />
-                  <circle cx="42" cy="30" r="20" fill="url(#g2)" />
-                </g>
-              </svg>
-            </div>
-          </div>
-
-          <div class="panel-head">
-            <h1 id="profile-name" class="name">Jan Novák</h1>
-            <p class="title">UI/UX designer · Frontend Developer</p>
-            <p class="company">Novák Creative</p>
-          </div>
-        </div>
-
-        <div class="panel-footer">
-          <small>Praha · Czech Republic</small>
-        </div>
-      </aside>
-
-      <section class="content">
-        <header class="hero">
-          <div class="hero-left">
-            <h2 class="tagline">Kontaktujte mě</h2>
-            <p class="subtitle">Rychlá vizitka — stručné kontaktní údaje</p>
-          </div>
-          <div class="hero-actions">
-            <a class="btn" href="mailto:jan.novak@example.com">Napsat e‑mail</a>
-          </div>
-        </header>
-
-        <section class="contact compact right-contact" aria-label="Kontakt">
-          <h2 class="sr-only">Kontakt</h2>
-          <div class="contact-grid">
-            <div class="contact-item"><span class="label">Tel</span><button class="copy" data-copy="+420 604 123 456">+420 604 123 456</button></div>
-            <div class="contact-item"><span class="label">Email</span><button class="copy" data-copy="jan@novak.cz">jan@novak.cz</button></div>
-            <div class="contact-item"><span class="label">Web</span><a href="https://novakcreative.cz" target="_blank" rel="noopener">novakcreative.cz</a></div>
-            <div class="contact-item"><span class="label">Adresa</span><span>Dlouhá 12, Praha 1</span></div>
-          </div>
-        </section>
-
-        <section class="social compact">
-          <div class="social-links">
-            <a href="#" class="social-item">LinkedIn</a>
-            <a href="#" class="social-item">GitHub</a>
-            <a href="#" class="social-item">Dribbble</a>
-            <a href="#" class="social-item">Instagram</a>
-          </div>
-        </section>
-
-        <!-- QR placeholder removed per request -->
-
-        <footer class="card-footer">
-          <small>Vizitka — obsah fiktivní. Přidejte své údaje pro tisk.</small>
-        </footer>
-      </section>
+  <main class="landing" style="padding:48px;">
+    <h1 style="margin-bottom:8px;">Vizitka & Wishlist</h1>
+    <p style="margin-top:0;">Vyberte jednu z možností:</p>
+    <div style="margin-top:18px; display:flex; gap:12px;">
+      <a class="btn" href="profile.html">Vizitka</a>
+      <a class="btn" href="wishlist/">Wishlist</a>
     </div>
-    
+    <p style="margin-top:18px; color:#666; font-size:0.9rem;">Pokud chcete, aby se domovská stránka zobrazovala jinde, změňte nastavení GitHub Pages (Repository → Settings → Pages).</p>
   </main>
-
-  <script src="js/script.js"></script>
 </body>
 </html>
