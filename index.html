@@ -12,41 +12,49 @@
   <main class="card" role="region" aria-label="Vizitka Jana Nováka">
     <div class="card-grid">
       <aside class="panel" aria-labelledby="profile-name">
-        <div class="avatar-wrap">
-          <div class="avatar"> 
-            <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Avatar">
-              <defs>
-                <linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#2b9af3"/><stop offset="1" stop-color="#7db6f7"/></linearGradient>
-              </defs>
-              <rect width="120" height="120" rx="18" fill="url(#g2)" opacity="0.12" />
-              <g transform="translate(18,18)">
-                <circle cx="42" cy="30" r="24" fill="#ffffff" opacity="0.95" />
-                <circle cx="42" cy="30" r="20" fill="url(#g2)" />
-                <rect x="6" y="72" width="72" height="18" rx="8" fill="#eaf6ff" />
-              </g>
-            </svg>
+        <div>
+          <div class="avatar-wrap">
+            <div class="avatar"> 
+              <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Avatar">
+                <defs>
+                  <linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#2b9af3"/><stop offset="1" stop-color="#7db6f7"/></linearGradient>
+                </defs>
+                <rect width="120" height="120" rx="18" fill="url(#g2)" opacity="0.12" />
+                <g transform="translate(18,18)">
+                  <circle cx="42" cy="30" r="24" fill="#ffffff" opacity="0.95" />
+                  <circle cx="42" cy="30" r="20" fill="url(#g2)" />
+                </g>
+              </svg>
+            </div>
           </div>
+
+          <div class="panel-head">
+            <h1 id="profile-name" class="name">Jan Novák</h1>
+            <p class="title">UI/UX designer · Frontend Developer</p>
+            <p class="company">Novák Creative</p>
+          </div>
+
+          <section class="contact compact" aria-label="Kontakt">
+            <h2 class="sr-only">Kontakt</h2>
+            <div class="contact-grid">
+              <div class="contact-item"><span class="label">Tel</span><button class="copy" data-copy="+420 604 123 456">+420 604 123 456</button></div>
+              <div class="contact-item"><span class="label">Email</span><button class="copy" data-copy="jan.novak@example.com">jan.novak@example.com</button></div>
+              <div class="contact-item"><span class="label">Web</span><a href="#">www.novakcreative.example</a></div>
+              <div class="contact-item"><span class="label">Adresa</span><span>Dlouhá 12, Praha 1</span></div>
+            </div>
+          </section>
         </div>
 
-        <section class="contact compact" aria-label="Kontakt">
-          <h2>Kontakt</h2>
-          <ul>
-            <li><strong>Tel</strong>: <button class="copy" data-copy="+420 604 123 456">+420 604 123 456</button></li>
-            <li><strong>Email</strong>: <button class="copy" data-copy="jan.novak@example.com">jan.novak@example.com</button></li>
-            <li><strong>Adresa</strong>: Dlouhá 12, Praha 1</li>
-          </ul>
-        </section>
-
         <div class="panel-footer">
-          <small>Novák Creative · Praha</small>
+          <small>Praha · Czech Republic</small>
         </div>
       </aside>
 
       <section class="content">
         <header class="hero">
-          <div>
-            <h1 id="profile-name" class="name">Jan Novák</h1>
-            <p class="title">UI/UX designer & Frontend Developer</p>
+          <div class="hero-left">
+            <h2 class="tagline">Kontaktujte mě</h2>
+            <p class="subtitle">Rychlá vizitka — stručné kontaktní údaje</p>
           </div>
           <div class="hero-actions">
             <a class="btn" href="mailto:jan.novak@example.com">Napsat e‑mail</a>
@@ -54,17 +62,28 @@
           </div>
         </header>
 
-          <section class="social compact">
-            <div class="social-links">
-              <a href="#" class="social-item">LinkedIn</a>
-              <a href="#" class="social-item">GitHub</a>
-              <a href="#" class="social-item">Dribbble</a>
-            </div>
-          </section>
+        <section class="social compact">
+          <div class="social-links">
+            <a href="#" class="social-item">LinkedIn</a>
+            <a href="#" class="social-item">GitHub</a>
+            <a href="#" class="social-item">Dribbble</a>
+          </div>
+        </section>
 
-          <footer class="card-footer">
-            <small>Vizitka — obsah fiktivní. Kontakt pro snadné předání.</small>
-          </footer>
+        <div class="extra">
+          <div class="qr-placeholder" aria-hidden="true">
+            <svg width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+              <rect width="96" height="96" rx="8" fill="#f3f9ff"/>
+              <rect x="12" y="12" width="20" height="20" fill="#dbefff"/>
+              <rect x="40" y="12" width="12" height="12" fill="#dbefff"/>
+              <rect x="12" y="40" width="12" height="12" fill="#dbefff"/>
+            </svg>
+          </div>
+        </div>
+
+        <footer class="card-footer">
+          <small>Vizitka — obsah fiktivní. Přidejte své údaje pro tisk.</small>
+        </footer>
       </section>
     </div>
     <script id="profile-data" type="application/json">{
